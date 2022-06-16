@@ -19,6 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();  // PasswordEncoder 인터페이스의 구현체 클래스인 BCryptPasswordEncoder
     }
 
+/*  스프링부트에서 UserDetailsService 인터페이스 Bean 등록으로 인하여 필요없는 코드
+
     // 인증 (Authentication)
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -30,6 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("USER");
                 // 권한 설정
     }
+*/
+
 
     // 인가 (Authorization)
     @Override
@@ -45,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin();  // 인증 or 인가에 문제시 로그인화면으로 이동
         http.csrf().disable();  // CSRF 토큰을 발행하지않도록 설정 (REST 방식으로 이용할 수 있는 보안 설정을 다루기 위해)
         http.logout();
+
     }
 
 }
