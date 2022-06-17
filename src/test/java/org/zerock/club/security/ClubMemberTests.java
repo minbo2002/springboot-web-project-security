@@ -57,7 +57,7 @@ public class ClubMemberTests {
     @Test
     public void testRead() {
 
-        Optional<ClubMember> result = repository.findByEmail("user95@zerock.org", false);
+        Optional<ClubMember> result = repository.findByEmail("user95@zerock.org" ,false);
 
         ClubMember clubMember = result.get();
 

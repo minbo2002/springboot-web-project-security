@@ -43,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sample/all").permitAll()
                 // URL주소 "/sample/all" 에서 로그인 하지않아도 접근가능
 
-                .antMatchers("/sample/member").hasRole("USER");
+                .antMatchers("/sample/member").hasRole("USER")
+                .antMatchers("/sample/admin").hasRole("ADMIN");
                 // USER 라는 권한 있어야 접근가능
 
         http.formLogin();  // 인증 or 인가에 문제시 로그인화면으로 이동

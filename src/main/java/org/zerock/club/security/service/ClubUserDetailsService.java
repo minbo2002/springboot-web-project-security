@@ -26,7 +26,7 @@ public class ClubUserDetailsService implements UserDetailsService {
 
         log.info("ClubUserDetailsService loadUserByUsername : " + username);
 
-        Optional<ClubMember> result = clubMemberRepository.findByEmail(username, false);
+        Optional<ClubMember> result = clubMemberRepository.findByEmail(username,false);
 
         if(result.isEmpty()) {
             throw new UsernameNotFoundException("Check Email or Social");
@@ -35,8 +35,9 @@ public class ClubUserDetailsService implements UserDetailsService {
         ClubMember clubMember = result.get();
 
         log.info("----------------------------------------------------------");
-        log.info(clubMember);
+        log.info("clubMember: {}", clubMember);
 
+        // UserDetials -> User
         ClubAuthMemberDTO clubAuthMember = new ClubAuthMemberDTO(
                 clubMember.getEmail(),
                 clubMember.getPassword(),
@@ -46,7 +47,7 @@ public class ClubUserDetailsService implements UserDetailsService {
                         .collect(Collectors.toSet())
         );
 
-        clubAuthMember.setName(clubAuthMember.getName());
+        clubAuthMember.setName(clubMember.getName());
         clubAuthMember.setFromSocial(clubMember.isFromSocial());
 
         return clubAuthMember;
